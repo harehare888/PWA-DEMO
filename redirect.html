@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA</title>
+</head>
+<body>
+    <script>
+        (() => {
+            const m = window.location.search.match(/\?to=([^&]+)(&.*)?/);
+            if (m) {
+                const url = decodeURI(m[1]);
+                const domain_path = url.match(/(https?:\/\/      \.   \/)?
+<!--                                   example:(https?:\/\/google\.com\/)
+                                URL of the site you want to make a pseudo PWA -->
+(.*)/);
+                if (typeof domain_path[1] === "undefined") {
+                    let path = domain_path[2];
+                    if (path[0] === "/") {
+                        path = path.substring(1);
+                    }
+                window.location.href = "https://google.com/" + path;
+                } else {
+                    if (domain_path[1] === "https://google.com/") {
+                        console.log(url);
+                        window.location.href = url;
+                    }
+                }
+            }
+            window.location.href = "https://google.com/";
+        })();
+    </script>
+</body>
+</html>
